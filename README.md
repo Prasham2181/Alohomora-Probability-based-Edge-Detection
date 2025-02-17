@@ -2,32 +2,54 @@
 
 ### *RBE549: Computer Vision - [Worcester Polytechnic Institute](https://www.wpi.edu/), Spring 2025*
 
-## Project Guidelines
-The project is divided into two phases:
-1. Implementation of a probabilistic boundary detection algorithm
-2. Implementation and performance improvement of convolutional backbones
+## Project Overview
+This project implements advanced computer vision techniques across two main phases:
+1. A probabilistic boundary detection algorithm that improves upon traditional edge detection methods
+2. Implementation and optimization of various convolutional neural network architectures
 
-Details of the project can be found [here](https://rbe549.github.io/spring2025/hw/hw0/).
+For detailed project specifications, please refer to the [course project page](https://rbe549.github.io/spring2025/hw/hw0/).
+
+## Requirements
+- Python 3.8+
+- PyTorch
+- NumPy
+- OpenCV
+- scikit-learn
+- matplotlib
+- tqdm
+
+To install all dependencies:
+```bash
+pip install -r requirements.txt
+```
 
 ## Phase 1: Shake My Boundary
 
 ### Overview
-Phase 1 involves creating various filter banks and applying them to images for texture, brightness, and color analysis. The primary goal is to generate different maps and gradients for creating a probabilistic boundary detection algorithm.
+This phase implements a sophisticated boundary detection algorithm using multiple filter banks and gradient analyses. The approach combines texture, brightness, and color information to create a robust probabilistic boundary detection system.
 
-### Steps to Run the Code
+### Key Features
+- Multiple filter bank implementations (DoG, Gabor, HD, LM)
+- Multi-channel analysis (texture, brightness, color)
+- Gradient computation and combination
+- Probabilistic boundary detection
+
+### Steps to Run
+1. Ensure your images are in the "BSDS500" directory
+2. Run the wrapper script:
 ```bash
 python Wrapper.py
 ```
-The script reads input images from the "BSDS500" folder and stores all outputs in the "Outputs" folder.
+All outputs will be automatically saved to the "Outputs" directory.
 
-### Results
+### Results Visualization
 
 #### Input Image
 <p align="left">
-  <img src="/Alohomora-Probability-based-Edge-Detection-master/Images/originalimage_1.jpg" alt="Original Image" style="width: 250px;"/>
+  <img src="Images/originalimage_1.jpg" alt="Original Image" style="width: 250px;"/>
 </p>
 
-#### Filter Banks Generated
+#### Generated Filter Banks
 <p align="center">
   <table>
     <tr>
@@ -45,7 +67,7 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
   </table>
 </p>
 
-#### Image Maps
+#### Feature Maps and Gradients
 <p align="center">
   <table>
     <tr>
@@ -61,23 +83,7 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
   </table>
 </p>
 
-#### Image Gradients
-<p align="center">
-  <table>
-    <tr>
-      <td> <img src="Phase 2 media_output/img_1/TextonGradient_1.png" alt="Texton Gradient" style="width: 250px;"/> </td>
-      <td> <img src="Phase 2 media_output/img_1/BrightnessGradient_1.png" alt="Brightness Gradient" style="width: 250px;"/> </td>
-      <td> <img src="Phase 2 media_output/img_1/ColorGradient_1.png" alt="Color Gradient" style="width: 250px;"/> </td>
-    </tr>
-    <tr>
-      <td align="center">Texton Gradient</td>
-      <td align="center">Brightness Gradient</td>
-      <td align="center">Color Gradient</td>
-    </tr>
-  </table>
-</p>
-
-#### Boundary Detection Comparison
+#### Comparative Analysis
 <p align="center">
   <table>
     <tr>
@@ -88,7 +94,7 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
     <tr>
       <td align="center">Canny Baseline</td>
       <td align="center">Sobel Baseline</td>
-      <td align="center">PBLite</td>
+      <td align="center">PBLite (Our Method)</td>
     </tr>
   </table>
 </p>
@@ -96,78 +102,88 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
 ## Phase 2: Deep Dive on Deep Learning
 
 ### Overview
-This phase focuses on implementing different convolutional backbones and comparing their performance. The primary goal is to implement and improve the performance of these architectures.
+This phase explores and implements various convolutional neural network architectures, focusing on performance optimization and comparative analysis.
 
-### Training the Model
+### Supported Architectures
+- Baseline CNN
+- BatchNorm-enhanced CNN
+- ResNet
+- ResNeXt
+- DenseNet
 
+### Training
 ```bash
-python Train.py --NumEpochs <NUMBER_OF_EPOCHS> --MiniBatchSize <BATCH_SIZE> --ModelType <MODEL_TYPE> --CustomLogs <PATH_TO_CUSTOMLOGS>
+python Train.py --NumEpochs <NUMBER_OF_EPOCHS> \
+                --MiniBatchSize <BATCH_SIZE> \
+                --ModelType <MODEL_TYPE> \
+                --CustomLogs <PATH_TO_CUSTOMLOGS>
 ```
 
-#### Arguments
+#### Training Parameters
 ```
-optional arguments:
-  -h, --help            show this help message and exit
-  --CheckPointPath CHECKPOINTPATH
-                        Path to save Checkpoints, Default: ../Checkpoints/
-  --NumEpochs NUMEPOCHS
-                        Number of Epochs to Train for, Default:50
-  --DivTrain DIVTRAIN   Factor to reduce Train data by per epoch, Default:1
-  --MiniBatchSize MINIBATCHSIZE
-                        Size of the MiniBatch to use, Default:1
-  --LoadCheckPoint LOADCHECKPOINT
-                        Load Model from latest Checkpoint from CheckPointsPath?, Default:0
-  --LogsPath LOGSPATH   Path to save Logs for Tensorboard, Default=Logs/
-  --ModelType MODELTYPE
-                        Model to use for training Model Types are Baseline, BatchNorm, ResNet, ResNeXt, DenseNet, Default:Baseline
-  --CustomLogs CUSTOMLOGS
-                        Path to save Logs and dynamic plots, Default=../Logs
+--CheckPointPath      Save directory for model checkpoints (default: ../Checkpoints/)
+--NumEpochs          Training epochs (default: 50)
+--DivTrain           Train data reduction factor (default: 1)
+--MiniBatchSize      Batch size (default: 1)
+--LoadCheckPoint     Load from checkpoint? (0/1, default: 0)
+--LogsPath           Tensorboard logs directory (default: Logs/)
+--ModelType          Architecture selection (Baseline/BatchNorm/ResNet/ResNeXt/DenseNet)
+--CustomLogs         Custom logs directory (default: ../Logs)
 ```
 
-#### Example
+#### Example Training Command
 ```bash
-python Train.py --NumEpochs 50 --MiniBatchSize 32 --ModelType Baseline --CustomLogs ../Logs
+python Train.py --NumEpochs 50 --MiniBatchSize 32 --ModelType ResNet --CustomLogs ../Logs
 ```
 
-### Testing the Model
-
+### Testing
 ```bash
-python Test.py --ModelPath <PATH_TO_CHECKPOINT> --SelectTestSet False --ModelType Baseline
+python Test.py --ModelPath <PATH_TO_CHECKPOINT> \
+               --SelectTestSet False \
+               --ModelType <MODEL_TYPE>
 ```
 
-#### Arguments
+#### Testing Parameters
 ```
-optional arguments:
-  -h, --help            show this help message and exit
-  --ModelPath MODELPATH
-                        Path to load latest model from, Default:ModelPath
-  --LabelsPath LABELSPATH
-                        Path of labels file, Default:./TxtFiles/LabelsTest.txt
-  --SelectTestSet SELECTTESTSET
-                        Choose the set to run the test on, Default:True
-  --ModelType MODELTYPE
-                        Model to use for training Model Types are Baseline, BatchNorm, ResNet, ResNeXt, DenseNet, Default:Baseline
-  --ConfusionMatrixPath CONFUSIONMATRIXPATH
-                        Path to save the confusion matrix Default:./Logs
+--ModelPath              Checkpoint directory
+--LabelsPath            Test labels file (default: ./TxtFiles/LabelsTest.txt)
+--SelectTestSet         Choose test set (default: True)
+--ModelType             Architecture selection
+--ConfusionMatrixPath   Save path for confusion matrix (default: ./Logs)
 ```
 
-#### Example
+#### Example Testing Command
 ```bash
-python Test.py --ModelPath ../Checkpoints/Baseline/ --ModelType Baseline
+python Test.py --ModelPath ../Checkpoints/ResNet/ --ModelType ResNet
 ```
 
 ## Project Structure
 ```
-├── Alohomora-Probability-based-Edge-Detection-master/
-│   ├── Images/
-│   ├── Phase_1_media/
-│   └── Phase 2 media_output/
-├── BSDS500/            # Input images
-├── Outputs/            # Generated outputs
+project-root/
+├── BSDS500/            # Dataset directory
 ├── Checkpoints/        # Model checkpoints
-├── Logs/              # Training and testing logs
-├── TxtFiles/          # Label files
-├── Train.py           # Training script
-├── Test.py            # Testing script
+├── Images/             # Result visualizations
+├── Logs/              # Training/testing logs
+├── Outputs/           # Generated outputs
+├── Phase_1_media/     # Phase 1 visualizations
+├── Phase 2 media_output/  # Phase 2 results
+├── TxtFiles/          # Label and configuration files
+├── Train.py           # Training implementation
+├── Test.py            # Testing implementation
 └── Wrapper.py         # Phase 1 implementation
 ```
+
+## Citation
+If you find this work useful in your research, please consider citing:
+```bibtex
+@article{WPI_CV_2025,
+  title={Probabilistic Boundary Detection and CNN Performance Enhancement},
+  author={[Your Name]},
+  journal={RBE549 Course Project},
+  institution={Worcester Polytechnic Institute},
+  year={2025}
+}
+```
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
