@@ -102,60 +102,105 @@ All outputs will be automatically saved to the "Outputs" directory.
 ## Phase 2: Deep Dive on Deep Learning
 
 ### Overview
-This phase explores and implements various convolutional neural network architectures, focusing on performance optimization and comparative analysis.
+This phase implements and compares various convolutional neural network architectures for image classification on the CIFAR-10 dataset. The implementation includes several modern network architectures and optimization techniques to improve classification performance.
 
-### Supported Architectures
-- Baseline CNN
-- BatchNorm-enhanced CNN
-- ResNet
-- ResNeXt
-- DenseNet
+### Implemented Architectures
+- **LeNet**: Classic convolutional neural network architecture
+- **Custom CIFAR10 Model**: Tailored architecture with batch normalization
+- **ResNet**: Deep residual network with skip connections
+- **DenseNet**: Dense convolutional network with dense connectivity pattern
+- **ResNeXt**: Advanced architecture with grouped convolutions and cardinality
+
+### Key Features
+- Batch normalization for faster training and better convergence
+- Skip connections in ResNet and ResNeXt for deep network training
+- Dense connectivity in DenseNet for better feature reuse
+- Data augmentation including random crops and horizontal flips
+- Learning rate optimization with Adam optimizer
+- Comprehensive model evaluation and visualization
 
 ### Training
 ```bash
-python Train.py --NumEpochs <NUMBER_OF_EPOCHS> \
-                --MiniBatchSize <BATCH_SIZE> \
-                --ModelType <MODEL_TYPE> \
-                --CustomLogs <PATH_TO_CUSTOMLOGS>
+python Train.py [options]
 ```
 
 #### Training Parameters
 ```
---CheckPointPath      Save directory for model checkpoints (default: ../Checkpoints/)
---NumEpochs          Training epochs (default: 50)
---DivTrain           Train data reduction factor (default: 1)
---MiniBatchSize      Batch size (default: 1)
+--CheckPointPath      Path to save checkpoints (default: ../Checkpoints/)
+--NumEpochs          Number of training epochs (default: 25)
+--DivTrain           Train data division factor (default: 1)
+--MiniBatchSize      Training batch size (default: 128)
 --LoadCheckPoint     Load from checkpoint? (0/1, default: 0)
---LogsPath           Tensorboard logs directory (default: Logs/)
---ModelType          Architecture selection (Baseline/BatchNorm/ResNet/ResNeXt/DenseNet)
---CustomLogs         Custom logs directory (default: ../Logs)
+--LogsPath           Training logs directory (default: LogsRes/)
 ```
 
-#### Example Training Command
-```bash
-python Train.py --NumEpochs 50 --MiniBatchSize 32 --ModelType ResNet --CustomLogs ../Logs
-```
+### Model Architecture Details
 
-### Testing
+#### CIFAR10 Custom Model
+- 3 convolutional blocks with increasing channels (16→32→64→128→256)
+- Batch normalization after each convolution
+- MaxPooling layers for spatial dimension reduction
+- Fully connected layers (512→128→10)
+
+#### ResNet Implementation
+- Residual blocks with skip connections
+- Convolutional blocks with BatchNorm and ReLU
+- Adaptive average pooling
+- Dropout for regularization
+
+#### DenseNet Architecture
+- Dense blocks with growth rate of 12
+- Transition layers for dimension reduction
+- Global average pooling
+- Dense connectivity pattern
+
+#### ResNeXt Design
+- Cardinality of 8 for grouped convolutions
+- Three stages with increasing channels (128→256→512)
+- Bottleneck blocks for efficient computation
+
+### Model Evaluation
 ```bash
-python Test.py --ModelPath <PATH_TO_CHECKPOINT> \
-               --SelectTestSet False \
-               --ModelType <MODEL_TYPE>
+python Test.py [options]
 ```
 
 #### Testing Parameters
 ```
---ModelPath              Checkpoint directory
---LabelsPath            Test labels file (default: ./TxtFiles/LabelsTest.txt)
---SelectTestSet         Choose test set (default: True)
---ModelType             Architecture selection
---ConfusionMatrixPath   Save path for confusion matrix (default: ./Logs)
+--ModelPath          Path to trained model checkpoint
+--LabelsPath         Path to test labels file
+--SelectTestSet      Test set selection flag
+--ModelType          Architecture selection
 ```
 
-#### Example Testing Command
-```bash
-python Test.py --ModelPath ../Checkpoints/ResNet/ --ModelType ResNet
-```
+### Results Visualization
+- Training and validation accuracy curves
+- Loss progression plots
+- Confusion matrix generation
+- Performance metrics comparison
+
+### Model Performance Analysis
+The implementation includes:
+- Real-time accuracy tracking
+- Loss monitoring
+- Model parameter counting
+- Confusion matrix visualization
+- Cross-architecture performance comparison
+
+### Training Optimizations
+- Data normalization (mean/std: (0.4914, 0.4822, 0.4465)/(0.2023, 0.1994, 0.2010))
+- Data augmentation techniques:
+  - Random cropping (32x32 with padding=4)
+  - Random horizontal flips (p=0.5)
+- Weight decay (1e-4) for regularization
+- Adam optimizer with learning rate 1e-3
+
+### Development Tools
+- PyTorch for model implementation
+- TensorBoard for training visualization
+- Matplotlib for result plotting
+- tqdm for progress tracking
+- scikit-learn for metrics computation
+
 
 ## Project Structure
 ```
