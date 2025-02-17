@@ -32,9 +32,9 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
   <table>
     <tr>
       <td> <img src="Phase_1_media/DoG.png" alt="DoG Filters" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase_1_media/Gabor.png" alt="Gabor Filters" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase_1_media/HDMask.png" alt="HD Masks" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase_1_media/LM.png" alt="LM Filters" style="width: 250px;"/> </td>
+      <td> <img src="Phase_1_media/Gabor.png" alt="Gabor Filters" style="width: 250px;"/> </td>
+      <td> <img src="Phase_1_media/HDMask.png" alt="HD Masks" style="width: 250px;"/> </td>
+      <td> <img src="Phase_1_media/LM.png" alt="LM Filters" style="width: 250px;"/> </td>
     </tr>
     <tr>
       <td align="center">DoG Filters</td>
@@ -49,9 +49,9 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
 <p align="center">
   <table>
     <tr>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase 2 media_output/img_1/TextonMap_1.png" alt="Texton Map" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase 2 media_output/img_1/BrightnessMap_1.png" alt="Brightness Map" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase 2 media_output/img_1/ColorMap_1.png" alt="Color Map" style="width: 250px;"/> </td>
+      <td> <img src="Phase 2 media_output/img_1/TextonMap_1.png" alt="Texton Map" style="width: 250px;"/> </td>
+      <td> <img src="Phase 2 media_output/img_1/BrightnessMap_1.png" alt="Brightness Map" style="width: 250px;"/> </td>
+      <td> <img src="Phase 2 media_output/img_1/ColorMap_1.png" alt="Color Map" style="width: 250px;"/> </td>
     </tr>
     <tr>
       <td align="center">Texton Map</td>
@@ -65,9 +65,9 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
 <p align="center">
   <table>
     <tr>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase 2 media_output/img_1/TextonGradient_1.png" alt="Texton Gradient" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase 2 media_output/img_1/BrightnessGradient_1.png" alt="Brightness Gradient" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase 2 media_output/img_1/ColorGradient_1.png" alt="Color Gradient" style="width: 250px;"/> </td>
+      <td> <img src="Phase 2 media_output/img_1/TextonGradient_1.png" alt="Texton Gradient" style="width: 250px;"/> </td>
+      <td> <img src="Phase 2 media_output/img_1/BrightnessGradient_1.png" alt="Brightness Gradient" style="width: 250px;"/> </td>
+      <td> <img src="Phase 2 media_output/img_1/ColorGradient_1.png" alt="Color Gradient" style="width: 250px;"/> </td>
     </tr>
     <tr>
       <td align="center">Texton Gradient</td>
@@ -81,9 +81,9 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
 <p align="center">
   <table>
     <tr>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Images/canny_baseline_1.png" alt="Canny Edge Detection" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Images/sobel_1.png" alt="Sobel Edge Detection" style="width: 250px;"/> </td>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase 2 media_output/img_1/PbLite_1.png" alt="PBLite Detection" style="width: 250px;"/> </td>
+      <td> <img src="Images/canny_baseline_1.png" alt="Canny Edge Detection" style="width: 250px;"/> </td>
+      <td> <img src="Images/sobel_1.png" alt="Sobel Edge Detection" style="width: 250px;"/> </td>
+      <td> <img src="Phase 2 media_output/img_1/PbLite_1.png" alt="PBLite Detection" style="width: 250px;"/> </td>
     </tr>
     <tr>
       <td align="center">Canny Baseline</td>
