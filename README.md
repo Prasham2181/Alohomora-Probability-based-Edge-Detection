@@ -31,7 +31,7 @@ The script reads input images from the "BSDS500" folder and stores all outputs i
 <p align="center">
   <table>
     <tr>
-      <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase_1_media/DoG.png" alt="DoG Filters" style="width: 250px;"/> </td>
+      <td> <img src="Phase_1_media/DoG.png" alt="DoG Filters" style="width: 250px;"/> </td>
       <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase_1_media/Gabor.png" alt="Gabor Filters" style="width: 250px;"/> </td>
       <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase_1_media/HDMask.png" alt="HD Masks" style="width: 250px;"/> </td>
       <td> <img src="Alohomora-Probability-based-Edge-Detection-master/Phase_1_media/LM.png" alt="LM Filters" style="width: 250px;"/> </td>
